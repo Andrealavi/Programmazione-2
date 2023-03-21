@@ -1,11 +1,3 @@
-//============================================================================
-// Name        : Debugging.cpp
-// Author      : Luca Bedogni
-// Version     :
-// Copyright   : Luca Bedogni
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
 #include <iostream>
 using namespace std;
 
