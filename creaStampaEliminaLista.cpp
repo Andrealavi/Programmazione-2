@@ -70,6 +70,16 @@ lista crealista(int n)
     return testa;
 }
 
+int lunghezza(lista l)
+{
+    if (l != NULL)
+    {
+        return 1 + lunghezza(tail(l));
+    }
+
+    return 0;
+}
+
 void eliminalista(lista &testa)
 {
     while (testa != NULL)
@@ -81,12 +91,16 @@ void eliminalista(lista &testa)
 int main()
 {
     int n;
-    cout << "Inserire il numero di elementi da inserire nella lista" << endl;
+    cout << "Inserire il numero di elementi da inserire nella lista: ";
     cin >> n;
+    cout << endl;
+
     lista testa = crealista(n);
-    stampalista(testa);
-    eliminalista(testa);
-    cout << testa << endl;
+    //    stampalista(testa);
+    //    eliminalista(testa);
+    //    cout << testa << endl;
+
+    cout << lunghezza(testa) << endl;
 
     return 0;
 }
