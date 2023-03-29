@@ -1,42 +1,8 @@
 #include <iostream>
 #include <cstring>
+#include "fun-app.h"
 
 using namespace std;
-
-/*******************************/
-/* HEADER MODULO "liste-tipo" */
-/*******************************/
-
-struct elem
-{
-    char inf[51];
-    elem *pun;
-    elem *prev;
-};
-
-typedef elem *lista;
-
-int compare(char *, char *);
-char *head(lista);
-elem *new_elem(char *);
-elem *search(lista, char *);
-
-/*******************************/
-/* HEADER MODULO "liste" */
-/*******************************/
-
-lista tail(lista);
-lista prev(lista);
-lista insert_elem(lista, elem *);
-lista delete_elem(lista, elem *);
-
-/**********************************************/
-/* HEADER MODULO "funzioni dell'applicazione" */
-/**********************************************/
-void stampalista(lista);
-lista crealista(int);
-lista cancella(lista, char *);
-void naviga(elem *);
 
 /***************************************************/
 /* DEFINIZIONE MODULO "funzioni dell'applicazione" */
