@@ -19,4 +19,4 @@ node *getParent(node *n);
 node *getFirstChild(node *n);
 node *getNextSibling(node *n);
 
-void printTree(tree t);
+void serialize(tree t);

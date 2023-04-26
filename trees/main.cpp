@@ -1,46 +1,58 @@
 #include <iostream>
+#include <algorithm>
 #include "albero.h"
 
 using namespace std;
 
+void serialize(tree t)
+{
+    if (t != NULL)
+    {
+        cout << "(" << getInfo(t);
+        serialize(getFirstChild(t));
+        cout << ")";
+        serialize(getNextSibling(t));
+    }
+}
+
+int height(tree t)
+{
+    if (t != NULL)
+    {
+        return max(1 + height(getFirstChild(t)), height(getNextSibling(t)) - 1);
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int main()
 {
 
-    const int n = 3;
-
-    tipoInf nomePadre;
-
-    cout << "Inserisci nome padre: ";
-    cin >> nomePadre;
-    cout << endl;
-
+    char *nomePadre = "Luca";
     tree t = newNode(nomePadre);
 
-    for (int i = 0; i < n; i++)
-    {
-        tipoInf nome;
+    nomePadre = "Paolo";
 
-        cout << "Inserisci nome figlio: ";
-        cin >> nome;
-        cout << endl;
+    t->firstChild = newNode(nomePadre);
 
-        node *child = newNode(nome);
-        insertChild(t, child);
+    node *child = getFirstChild(t);
 
-        if (i == 1)
-        {
-            tipoInf nomeFiglio;
+    nomePadre = "Marco";
+    child->nextSibling = newNode(nomePadre);
 
-            cout << "Inserisci nome figlio del sibling: ";
-            cin >> nomeFiglio;
-            cout << endl;
+    nomePadre = "Lucia";
+    child = getNextSibling(child);
+    child->firstChild = newNode(nomePadre);
 
-            node *siblingChild = newNode(nomeFiglio);
-            insertChild(getFirstChild(t), siblingChild);
-        }
-    }
+    nomePadre = "Anna";
+    child->nextSibling = newNode(nomePadre);
 
-    printTree(t);
+    serialize(t);
+    cout << endl;
+
+    cout << height(t) << endl;
 
     return 0;
 }

@@ -15,12 +15,26 @@ node *getParent(node *n)
 
 node *getFirstChild(node *n)
 {
-    return n->firstChild;
+    if (n->firstChild != NULL)
+    {
+        return n->firstChild;
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 node *getNextSibling(node *n)
 {
-    return n->nextSibling;
+    if (n->nextSibling != NULL)
+    {
+        return n->nextSibling;
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 node *newNode(tipoInf i)
@@ -48,16 +62,4 @@ void insertSibling(node *n, tree t)
     t->parent = getParent(n);
     t->nextSibling = getNextSibling(n);
     n->nextSibling = t;
-}
-
-void printTree(tree t)
-{
-    if (t != NULL)
-    {
-        cout << getInfo(t) << endl;
-        if (getFirstChild(t) != NULL)
-            printTree(t->firstChild);
-        if (getNextSibling(t) != NULL)
-            printTree(t->nextSibling);
-    }
 }
