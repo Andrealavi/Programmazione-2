@@ -1,6 +1,6 @@
 #include <iostream>
 #include <algorithm>
-#include "albero.h"
+#include "codaBfs.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ void serialize(tree t)
 
 int height(tree t)
 {
-    if (t != NULL)
+    if (t != NULL && getFirstChild(t) != NULL)
     {
         return max(1 + height(getFirstChild(t)), height(getNextSibling(t)) - 1);
     }
@@ -25,6 +25,29 @@ int height(tree t)
     {
         return 0;
     }
+}
+
+int dimensione(tree t)
+{
+    codaBFS c = newQueue();
+    c = enqueue(c, t);
+
+    int dim = 0;
+
+    while (!isEmpty(c))
+    {
+        node *n = dequeue(c);
+        dim++;
+        tree t1 = getFirstChild(n);
+
+        while (t1 != NULL)
+        {
+            c = enqueue(c, t1);
+            t1 = getNextSibling(t1);
+        }
+    }
+
+    return dim;
 }
 
 int main()
@@ -38,6 +61,12 @@ int main()
     t->firstChild = newNode(nomePadre);
 
     node *child = getFirstChild(t);
+
+    nomePadre = "Elena";
+    child->firstChild = newNode(nomePadre);
+
+    nomePadre = "Sofia";
+    child->firstChild->nextSibling = newNode(nomePadre);
 
     nomePadre = "Marco";
     child->nextSibling = newNode(nomePadre);
@@ -53,6 +82,7 @@ int main()
     cout << endl;
 
     cout << height(t) << endl;
+    cout << dimensione(t) << endl;
 
     return 0;
 }

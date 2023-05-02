@@ -1,4 +1,4 @@
-OBJ = main.o albero.o stringa.o
+OBJ = main.o albero.o stringa.o codaBfs.o
 
 alberoProva: $(OBJ)
 	g++ -o $@ $(OBJ)
